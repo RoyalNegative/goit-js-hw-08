@@ -1,0 +1,39 @@
+.gallery {
+    width: 1128px;
+    display: grid;
+    align-items: center;
+    justify-self: center;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .galleryLi {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .galleryLink {
+    display: block;
+    position: relative;
+  }
+  
+  .galleryImg{
+    width: 360px;
+    height: 200px;
+    display: block;
+  
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .gallery-item a img:hover {
+    transform: scale(1.1);
+    cursor: zoom-in;
+  }
+
+  .gallery-item a img{
+    width: 360px;
+    height: 200px;
+  }
