@@ -1,6 +1,4 @@
-import * as basicLightbox from "../dist/basicLightbox.min.js";
-
-
+import * as basicLightbox from 'basiclightbox';
 
 const images = [
   {
@@ -68,14 +66,12 @@ const images = [
   },
 ];
 
-
 const gallery = document.querySelector('.gallery');
 console.log(gallery);
 images.forEach((element) => {
-
   gallery.innerHTML += `
   <li class="gallery-item">
-  <a class="gallery-link" href="large-image.jpg">
+  <a class="gallery-link" href="${element.original}">
     <img
       class="gallery-image"
       src="${element.preview}"
@@ -85,19 +81,22 @@ images.forEach((element) => {
   </a>
 </li>`
 });
-;
 
+gallery.addEventListener('click', (event) => {
+  event.preventDefault();
+  if (event.target.nodeName !== 'IMG') return;
 
-
-gallery.addEventListener('click', buyut);
-
-function buyut(event) {
   const instance = basicLightbox.create(`
     <div class="modal">
       <img src="${event.target.dataset.source}" width="800" height="600">
-      <button class="modal-close">Close</button>
     </div>`
   );
 
   instance.show();
-};
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      instance.close();
+    }
+  }, { once: true });
+});
